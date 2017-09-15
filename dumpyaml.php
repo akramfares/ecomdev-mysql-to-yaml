@@ -1,9 +1,9 @@
-#!/usr/bin/env php
 <?php
+#!/usr/bin/env php
 /* ========================================================
  * File           : dumpyaml.php
- * Date           : July 15, 2010, Edited December 5, 2014, Second edit on September 15, 2017
- * Author         : Jonathan Franzone, Edited by: Ben Robie, Second edit by Akram Fares
+ * Date           : July 15, 2010, Edited December 5, 2014
+ * Author         : Jonathan Franzone, Edited by: Ben Robie and Akram Fares
  * Author Website : Original Script: http://www.franzone.com/2010/07/16/dump-a-mysql-database-to-yaml-using-php/
  *
  * Script to generate YAML (http://www.yaml.org/) from
@@ -22,10 +22,10 @@
  * ========================================================
  */
 
-$DBHOST = '';
-$DBUSER = '';
-$DBPASS = '';
-$DBNAME = '';
+$DBHOST = '192.168.1.74';
+$DBUSER = 'standoutApp';
+$DBPASS = 'W@b0*nEu9!#ch1L&k5t%';
+$DBNAME = 'strengthaccelerator';
 $TABLES = array();
 $DBQUERY = '';
 $QUERYNAME = '';
@@ -167,7 +167,7 @@ function sql_to_yaml($link, $sql, $table) {
 		while ($row = mysqli_fetch_assoc($result)) {
 			$first = true;
 			// Output the row/collection indicator
-			echo "  - \n";
+			echo "- \n";
 
 			// Loop over the columns output names and values
 			foreach ($row as $key => $value) {
@@ -176,9 +176,14 @@ function sql_to_yaml($link, $sql, $table) {
 				$literalFlag = (strpos($value, "\r") !== FALSE || strpos($value, "\n") !== FALSE) ? "| " : "";
 
 				// Output the key/value pair
-				echo "    {$key}: {$literalFlag}{$value}\n";
+				if (is_null($value)) {
+					echo "  {$key}: {$literalFlag}{$value}\n";
+				} else {
+					echo "  {$key}: \"".str_replace('"', '\"', "{$literalFlag}{$value}")."\"\n";
+				}
 			}
 		}
+		echo "\n";
 	}
 
 	// Free the result resources
