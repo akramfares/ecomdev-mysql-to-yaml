@@ -167,7 +167,7 @@ function sql_to_yaml($link, $sql, $table) {
 		while ($row = mysqli_fetch_assoc($result)) {
 			$first = true;
 			// Output the row/collection indicator
-			echo "  - ";
+			echo "  - \n";
 
 			// Loop over the columns output names and values
 			foreach ($row as $key => $value) {
@@ -176,12 +176,7 @@ function sql_to_yaml($link, $sql, $table) {
 				$literalFlag = (strpos($value, "\r") !== FALSE || strpos($value, "\n") !== FALSE) ? "| " : "";
 
 				// Output the key/value pair
-				if ($first){
-					echo "{$key}: {$literalFlag}{$value}\n";
-					$first = false;
-				} else {
-					echo "      {$key}: {$literalFlag}{$value}\n";
-				}
+				echo "    {$key}: {$literalFlag}{$value}\n";
 			}
 		}
 	}
