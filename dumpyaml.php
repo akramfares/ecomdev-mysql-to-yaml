@@ -2,8 +2,8 @@
 <?php
 /* ========================================================
  * File           : dumpyaml.php
- * Date           : July 15, 2010, Edited December 5, 2014
- * Author         : Jonathan Franzone, Edited by: Ben Robie and Akram Fares
+ * Date           : July 15, 2010, Edited December 5, 2014, Second edit on September 15, 2017
+ * Author         : Jonathan Franzone, Edited by: Ben Robie, Second edit by Akram Fares
  * Author Website : Original Script: http://www.franzone.com/2010/07/16/dump-a-mysql-database-to-yaml-using-php/
  *
  * Script to generate YAML (http://www.yaml.org/) from
